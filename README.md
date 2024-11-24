@@ -3,7 +3,9 @@ License: CC-BY-SA
 
 Part of an ongoing independant research project, whereby two LLMs are trained to operate in tandem, one feeding into the other in series.
 
-I am working on creating and testing a step-by-step approach to fine-tuning a large language model using two models working in series. For the first approach, "Single Dynamic", I have one static and one dynamic, whereby one feeds into the next resulting in the desired result as well as an intermediary in-between point. This may help stack processing abilities and allow a further window into interpretability. For the second approach, "Dual Dynamic", I've modified the implementation to allow alternating training between the two models. This creates an adversarial-like training dynamic where each model takes turns learning to work with the other.
+I am working on creating and testing a step-by-step approach to fine-tuning a "composite" large language model using two models working in series. This could be seen as similar to a merge where all the layers of one model occur before all the layers of the second model, but allowing for observability at the in-between space, segmented training processes, and even the effective merging of different architectures. Perhaps a future version may even be able to effectively merge and train a composite of vastly different architectures such as Transformers and Mamba models, into functionally one single model.
+
+For the first approach, "Single Dynamic", I have one static and one dynamic, whereby one feeds into the next resulting in the desired result as well as an intermediary in-between point. This may help stack processing abilities and allow a further window into interpretability. For the second approach, "Dual Dynamic", I've modified the implementation to allow alternating training between the two models. This creates an adversarial-like training dynamic where each model takes turns learning to work with the other.
 
 **Single Dynamic**
 
