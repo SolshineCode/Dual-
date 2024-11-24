@@ -1,4 +1,6 @@
-# Dual-
+# Tandem Series LLM Training - Ongoing Research
+License: CC-BY-SA
+
 Part of an ongoing independant research project, whereby two LLMs are trained to operate in tandem, one feeding into the other in series.
 
 I am working on creating and testing a step-by-step approach to fine-tuning a large language model using two models, one static and one dynamic, whereby one feeds into the next resulting in the desired result as well as an intermediary in-between point. This may help stack processing abilities and allow a further window into interpretability..
