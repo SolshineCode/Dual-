@@ -3,9 +3,9 @@ License: CC-BY-SA
 
 Part of an ongoing independant research project, whereby two LLMs are trained to operate in tandem, one feeding into the other in series.
 
-I am working on creating and testing a step-by-step approach to fine-tuning a large language model using two models, one static and one dynamic, whereby one feeds into the next resulting in the desired result as well as an intermediary in-between point. This may help stack processing abilities and allow a further window into interpretability..
+I am working on creating and testing a step-by-step approach to fine-tuning a large language model using two models working in series. For the first approach, "Single Dynamic", I have one static and one dynamic, whereby one feeds into the next resulting in the desired result as well as an intermediary in-between point. This may help stack processing abilities and allow a further window into interpretability. For the second approach, "Dual Dynamic", I've modified the implementation to allow alternating training between the two models. This creates an adversarial-like training dynamic where each model takes turns learning to work with the other.
 
-**Analysis**
+**Single Dynamic**
 
 The problem involves fine-tuning a large language model (LLM) using a novel approach with two models:
 
@@ -72,3 +72,6 @@ To fine-tune model (b) using this approach, follow these steps:
 ```
 
 I realize that I may have oversimplified the fine-tuning objective. In practice, the objective function may need to be more complex to account for the nuances of the in-between space between models (a) and (b). Additionally, the choice of model (b) and its initialization may significantly impact the fine-tuning process. May require experimenting with different models and hyperparameters to find the optimal configuration long term.
+
+**Dual Dynamic**
+
