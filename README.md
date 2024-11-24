@@ -14,7 +14,7 @@ The problem involves fine-tuning a large language model (LLM) using a novel appr
 
 The goal is to train model (b) to generate responses that, when fed into model (a), produce the desired output. This creates an "in-between space" where model (b) learns to adapt its output to elicit the correct response from model (a).
 
-**Step-by-Step Approach**
+Step-by-Step Approach
 
 To fine-tune model (b) using this approach, follow these steps:
 
@@ -32,7 +32,7 @@ To fine-tune model (b) using this approach, follow these steps:
 6. **Repeat the fine-tuning loop**: Iterate through the training data, updating model (b) after each iteration.
 7. **Evaluate and refine**: Periodically evaluate the performance of model (b) on a validation set. Refine the fine-tuning process as needed.
 
-**Diagram**
+Single Dynamic Diagram
 ```markdown
 +---------------+
 |  Input Prompt  |
