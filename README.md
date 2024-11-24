@@ -85,3 +85,100 @@ I realize that I may have oversimplified the fine-tuning objective. In practice,
 * Added switch_frequency parameter to control how often models alternate
 * Enhanced evaluation to track both models' performance
 * Added proper model state management (train/eval modes)
+
+Process of Dual Dynamic:
+
+1. The training dataset is loaded into a `DataLoader` with a specified batch size.
+2. The `AlternatingModelTrainer` class takes the `DataLoader` as input and trains two models, `Model A` and `Model B`, in an alternating manner.
+3. `Model A` is a static model, while `Model B` is a dynamic model that is being fine-tuned.
+4. The forward pass is performed on `Model B` first, followed by the forward pass on `Model A`.
+5. The loss is computed for both models using the output of `Model A` and the target response.
+6. The backward pass is performed on `Model B` to update its parameters.
+7. The optimizer is used to update the parameters of `Model B`.
+8. The models are switched every N batches, where N is a hyperparameter.
+9. The process is repeated until convergence.
+
+Dual Dynamic Diagram
+```markdown
+                                      +---------------+
+                                      |  Training    |
+                                      |  Dataset     |
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  DataLoader  |
+                                      |  (batch_size)  |
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Alternating  |
+                                      |  Model Trainer|
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Model A     |
+                                      |  (static)     |
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Model B     |
+                                      |  (dynamic)    |
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Forward Pass|
+                                      |  (Model B)    |
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Forward Pass|
+                                      |  (Model A)    |
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Compute Loss|
+                                      |  (Model A & B) |
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Backward Pass|
+                                      |  (Model B)    |
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Optimizer   |
+                                      |  (Model B)    |
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Switch Models|
+                                      |  (every N batches)|
+                                      +---------------+
+                                             |
+                                             |
+                                             v
+                                      +---------------+
+                                      |  Repeat       |
+                                      |  (until convergence)|
+                                      +---------------+
+```
