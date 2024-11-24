@@ -75,3 +75,13 @@ I realize that I may have oversimplified the fine-tuning objective. In practice,
 
 **Dual Dynamic**
 
+* Added alternating training mechanism where models switch roles periodically
+* Introduced TrainingMode enum to track which model is being trained
+* Separated optimizers for each model
+* Added configuration dataclass for better parameter management
+* Modified loss computation to handle both models
+* Added proper logging for both models' metrics
+* Implemented proper gradient computation based on active model
+* Added switch_frequency parameter to control how often models alternate
+* Enhanced evaluation to track both models' performance
+* Added proper model state management (train/eval modes)
