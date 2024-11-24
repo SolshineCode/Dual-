@@ -86,6 +86,32 @@ I realize that I may have oversimplified the fine-tuning objective. In practice,
 * Enhanced evaluation to track both models' performance
 * Added proper model state management (train/eval modes)
 
+Considerations in Dual Dynamic version:
+* Gradient Flow:
+- Only the active model's gradients are computed
+- Frozen model's outputs are detached from computation graph
+- Gradient accumulation handles larger effective batch sizes
+
+* Model Switching:
+- Happens at regular intervals during training
+- Maintains separate optimizers for each model
+- Each model learns to work with the other's current state
+
+* Loss Computation:
+- Cross-entropy loss measures prediction accuracy
+- Separate losses tracked for each model
+- Losses guide the learning process
+
+* Memory Management:
+- Gradients cleared after each optimization step
+- Tensors moved to correct device
+- Memory freed when no longer needed
+
+* Logging and Monitoring:
+- Regular logging of metrics
+- Validation performed periodically
+- Progress tracked through Weights & Biases
+
 Process of Dual Dynamic:
 
 1. The training dataset is loaded into a `DataLoader` with a specified batch size.
