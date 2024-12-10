@@ -210,3 +210,22 @@ Dual Dynamic Diagram
                                       |  (until convergence)|
                                       +---------------+
 ```
+
+# Note on why keeping the training logic and adapting inference is advantageous:
+
+1. Training Stability
+* Training directly with logits provides more granular learning signals
+* Using .generate() during training would introduce non-differentiable sampling
+* The current training approach allows proper backpropagation through both models
+2. Inference Flexibility
+.generate() provides important inference features like:
+* Temperature control
+* Top-p/nucleus sampling
+* Max length constraints
+* Beam search
+These help produce better/more diverse outputs at inference time
+3. Best of Both Worlds
+* Training: Precise optimization with direct logit supervision
+* Inference: Rich generation features for better real-world use
+* No need to compromise either use case
+So adapting inference to match training would remove valuable generation capabilities, while keeping training focused on exact logit matching maintains optimal learning while allowing flexible inference strategies.
